@@ -24,7 +24,6 @@ public class DressUpGameGUI extends JFrame {
         setSize(1000, 700);
         setLocationRelativeTo(null);
 
-        // ===== Data init =====
         List<OutfitImplementor> outfits = new ArrayList<>();
         outfits.add(new Outfit1());
         outfits.add(new Outfit2());
@@ -33,12 +32,12 @@ public class DressUpGameGUI extends JFrame {
         lama1 = new lama1(outfits.get(0));
         lama2 = new lama2(outfits.get(0));
 
-        // ===== Left (menu) =====
+        //Left (menu)
         JPanel panelStanga = new JPanel(new GridBagLayout());
         panelStanga.setBackground(Color.decode("#93BD57"));
         panelStanga.setMinimumSize(new Dimension(300, 0));
 
-        // ===== Right (display) =====
+        //Right (display)
         JPanel wrapperDreapta = new JPanel(new GridBagLayout());
         wrapperDreapta.setBackground(Color.decode("#D1855C"));
 
@@ -88,26 +87,25 @@ public class DressUpGameGUI extends JFrame {
 
         wrapperDreapta.add(layeredPane, new GridBagConstraints());
 
-        // ===== Split pane =====
+        //Split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelStanga, wrapperDreapta);
         splitPane.setResizeWeight(0.0);
         splitPane.setDividerLocation(300);
 
         add(splitPane);
 
-        // ===== Load initial images =====
+        //Load initial images
         ImageIcon fundalIcon = new ImageIcon("./Imagini/barn.jpeg");
         ImageIcon logoIcon = new ImageIcon("./Imagini/logo dress up the llama.png");
         fundalLabel.setIcon(fundalIcon);
         logoLabel.setIcon(logoIcon);
 
-        // ===== Helper =====
         Runnable refreshLeft = () -> {
             panelStanga.revalidate();
             panelStanga.repaint();
         };
 
-        // ===== Panels (left) =====
+        //Panels (left)
 
         // Start panel
         JPanel panelStart = new JPanel(new GridLayout(1, 1, 10, 10));
@@ -148,7 +146,7 @@ public class DressUpGameGUI extends JFrame {
         JButton btnRestart = new JButton("↻ Restart");
         panelRestart.add(btnRestart);
 
-        // Custom panel - FOLOSIND CLASA SEPARATĂ
+        // Custom panel
         JPanel panelCustom = CustomizePanelBuilder.buildCustomizePanel(
                 hatLabel, bluzaLabel, accesoriiLabel, copiteLabel,
                 panelStanga, panelOutfits, refreshLeft
@@ -173,7 +171,7 @@ public class DressUpGameGUI extends JFrame {
         gbc.gridy = 4;
         panelStanga.add(panelRestart, gbc);
 
-        // ===== Actions =====
+        // Actions
 
         btnStart.addActionListener(e -> {
             panelStart.setVisible(false);
@@ -263,10 +261,9 @@ public class DressUpGameGUI extends JFrame {
             layeredPane.repaint();
         });
 
-        // ===== Show window LAST =====
+        //Show window LAST
         setVisible(true);
         splitPane.setDividerLocation(300);
     }
     
-    // METODA buildCustomizePanel A FOST ȘTEARSĂ - acum folosim CustomizePanelBuilder
 }
